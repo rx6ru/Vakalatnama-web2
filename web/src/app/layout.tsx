@@ -10,7 +10,11 @@ const majorMono = Major_Mono_Display({
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${majorMono.className}`}>
-      <body>{children}</body>
+        
+        <body>
+            
+            {children}
+        </body>
     </html>
   );
 }

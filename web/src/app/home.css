@@ -23,12 +23,8 @@
     box-sizing: border-box; /* Ensure padding is included in the width */
   }
   
-  
-  
-  
-  /* New: Content wrapper with a higher stacking order */
   .content {
-    margin-top: 20dvh;
+    margin-top: 25dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,9 +34,8 @@
   }
   
   
-  /* 4. Title */
   .title {
-    font-size: clamp(12dvw, 8vw, 6rem); /* min, ideal, and max sizes */
+    font-size: clamp(7dvw, 7dvw, 6rem);
     text-align: center;
     font-weight: 100;
     margin-bottom: 2dvh;
@@ -48,64 +43,13 @@
     cursor: default;
     position: relative;
   }
-  
-  /* 5. Button group */
-  .button-group {
-    display: flex;
-    gap: 2dvw;
-    margin-bottom: 3rem;
-  }
-  
-  /* 6. Login button styles */
-  .login-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border: none;
-    border-radius: 4px;
-    background-color: #FFF;
-    color: #333;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .login-button:hover {
-    background-color: #E8E8E8;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* 7. Petitioners container */
-  .petitioners {
-    font-family: oswald, sans-serif;
-    padding-left: 3dvw;
-    display: flex;
-    align-items:baseline;
-    gap: 0.5rem; /* Adjust gap as needed */
-    justify-content: flex-start; /* Align items to the left */
-    width: 100%; /* Ensure the container spans full width if needed */
-    color: rgb(110, 110, 110);
-    cursor: default;
-  }
-  
-  .countup-container {
-    display: inline-block;
-    /* Adjust the width as needed. Using 'ch' units can help if you're using a monospace or similar font */
-    width: 15dvw; 
-    text-align: right; /* Align the number to the right if desired */
-  }
-  
-  
-  .petitioners-label {
-    display: block;
-    margin-left: 1dvw;
-    font-size: 3dvw;
-    letter-spacing: 6px;
-    font-weight: 300;
-  }
-  
-  
 
+
+/* styles/globals.css or your main CSS file */
+::selection {
+  background-color: #ffffffcc; /* Tailwind's yellow-400 */
+  color: #000000; /* Black text */
+}
 
 
   /* Mobile adjustments */
@@ -114,21 +58,6 @@
     margin-top: 20vh; /* Less top margin on mobile */
   }
   .title {
-    font-size: 11vw; /* Adjust font size for mobile */
-  }
-  .petitioners {
-    gap: 13vw; /* Increase gap for better spacing */
-  }
-  .petitioners-label {
-    font-size: 6vw; /* Adjust font size for mobile */
-  }
-  .button-group {
-    gap: 4vw; /* Increase gap for better spacing */
-  }
-  /* Increase the size of Button 1 if needed (assuming Button 1 uses similar units) */
-  button {
-    /* Example override for button size */
-    width: 60vw !important;
-    font-size: 4vw !important;
+    font-size: 10dvw; /* Adjust font size for mobile */
   }
 }
