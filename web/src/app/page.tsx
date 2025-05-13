@@ -4,9 +4,13 @@ export default function Home() {
   return (
     <div className="app-container">
       <div className="content">
-        <div className="title font-major"> VAKALATNAMA </div>
+        <div className="font-major title">
+          VAKALATNAMA
+        </div>
+        <div className="font-oswald">
+          PETITIONER
+        </div>
       </div>
-      
       <Waves
         lineColor="rgba(255, 255, 255, 0.2)"
         waveSpeedX={0.04}

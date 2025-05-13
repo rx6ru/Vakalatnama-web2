@@ -1,20 +1,21 @@
-import { ReactNode } from 'react';
-import { Major_Mono_Display } from 'next/font/google';
 
-const majorMono = Major_Mono_Display({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-major-mono',
-});
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${majorMono.className}`}>
-        
-        <body>
-            
-            {children}
-        </body>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Oswald:wght@200;300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head> 
+      <body>{children}</body>
     </html>
   );
 }

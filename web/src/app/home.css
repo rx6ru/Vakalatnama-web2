@@ -1,4 +1,6 @@
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +12,9 @@
     color: #ffffff;              /* Dark gray text */
     min-width: 10rem;
   }
+
+
+
 
   .app-container {
     position: relative;
