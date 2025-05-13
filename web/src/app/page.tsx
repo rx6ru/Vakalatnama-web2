@@ -1,4 +1,5 @@
 import Waves from "../components/Wave";
+import CountUp from '../components/CountUp'
 import "./home.css"; 
 export default function Home() {
   return (
@@ -23,6 +24,18 @@ export default function Home() {
         xGap={12}
         yGap={40}
       />
+    <div>
+      <span>
+        <CountUp
+        from={0}
+        to={432}
+        separator=","
+        direction="up"
+        duration={2}
+        className="count-up-text"
+      />
+      </span>
+    </div>
     </div>
   );
 }
