@@ -5,12 +5,8 @@ export default function Home() {
   return (
     <div className="app-container">
       <div className="content">
-        <div className="font-major title">
-          VAKALATNAMA
-        </div>
-        <div className="font-oswald">
-          PETITIONER
-        </div>
+        <div className="font-major title">VAKALATNAMA</div>
+        <div className="text-3xl font-oswald">PETITIONER</div>
       </div>
       <Waves
         lineColor="rgba(255, 255, 255, 0.2)"
@@ -39,4 +35,3 @@ export default function Home() {
     </div>
   );
 }
-
