@@ -1,15 +1,11 @@
 import Waves from "../components/Wave";
-import "./home.css"; 
+import "./home.css";
 export default function Home() {
   return (
     <div className="app-container">
       <div className="content">
-        <div className="font-major title">
-          VAKALATNAMA
-        </div>
-        <div className="font-oswald">
-          PETITIONER
-        </div>
+        <div className="font-major title">VAKALATNAMA</div>
+        <div className="font-oswald text-3xl">PETITIONER</div>
       </div>
       <Waves
         lineColor="rgba(255, 255, 255, 0.2)"
@@ -26,4 +22,3 @@ export default function Home() {
     </div>
   );
 }
-
