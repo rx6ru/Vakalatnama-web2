@@ -1,12 +1,12 @@
 import express, { Request, Response , NextFunction} from 'express';
 
 import bodyParser from 'body-parser';
-import petRouter from './routes/petitioner';
+import petitioner from './routes/petitioner';
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use("/petitioner", petRouter);
+app.use("/petitioner", petitioner);
 
 const PORT = 3000;
 app.listen(PORT, () => {
