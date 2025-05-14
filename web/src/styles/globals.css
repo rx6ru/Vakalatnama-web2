@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -11,6 +14,7 @@
 @theme {
   --font-major: "Major Mono Display", monospace;
   --font-oswald: "Oswald", sans-serif;
+  --font-space: "Space Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {

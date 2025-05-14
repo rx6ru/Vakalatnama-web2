@@ -1,3 +1,8 @@
+::selection {
+  background-color: #ffffffcc; /* Tailwind's yellow-400 */
+  color: #000000; /* Black text */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -46,13 +51,29 @@
     position: relative;
   }
 
-
-/* styles/globals.css or your main CSS file */
-::selection {
-  background-color: #ffffffcc; /* Tailwind's yellow-400 */
-  color: #000000; /* Black text */
+.count-up-text{
+    font-size: clamp(11dvw, 7dvw, 6rem);
+    text-align: right;
+    font-weight: 100;
+    margin-bottom: 2dvh;
+    margin-right: 1dvw;
+    letter-spacing: 2px;
+    cursor: default;
+    position: relative;
+    width: 16dvw;
 }
 
+.pcount-container{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: left;
+    margin-left: 2dvw;
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
 
   /* Mobile adjustments */
 @media (max-width: 600px) {

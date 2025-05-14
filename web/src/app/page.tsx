@@ -1,5 +1,6 @@
 import Waves from "../components/Wave";
 import CountUp from '../components/CountUp'
+
 import "./home.css"; 
 export default function Home() {
   return (
@@ -7,7 +8,23 @@ export default function Home() {
       <div className="content">
         <div className="font-major title">VAKALATNAMA</div>
         <div className="text-3xl font-oswald">PETITIONER</div>
+
       </div>
+
+      <div className=" text-zinc-500 pcount-container">
+        <CountUp
+        from={0}
+        to={432}
+        separator=","
+        direction="up"
+        duration={2}
+        className="count-up-text font-oswald"
+        />
+        <span className="text-[4dvw] font-[400] font-space">
+          PETITIONERS
+        </span>
+      </div>
+
       <Waves
         lineColor="rgba(255, 255, 255, 0.2)"
         waveSpeedX={0.04}
@@ -20,18 +37,7 @@ export default function Home() {
         xGap={12}
         yGap={40}
       />
-    <div>
-      <span>
-        <CountUp
-        from={0}
-        to={432}
-        separator=","
-        direction="up"
-        duration={2}
-        className="count-up-text"
-      />
-      </span>
-    </div>
+
     </div>
   );
 }
