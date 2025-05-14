@@ -7,7 +7,7 @@ const router = Router();
 
 // Protect all following routes
 router.use('/', authCheck, (req: Request, res: Response, next: NextFunction) => {
-  if (req.user) {
+  if (req.headers.user) {
     res.redirect('/petitioner/dashboard');
   }else {
     res.redirect('/petitioner/signin');
