@@ -1,11 +1,6 @@
 import Waves from "../components/Wave";
 import CountUp from '../components/CountUp'
 import Link from "next/link";
-
-  
-
-
-
 import "./home.css"; 
 export default function Home() {
   return (

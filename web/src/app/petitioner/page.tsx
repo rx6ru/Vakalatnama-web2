@@ -12,19 +12,19 @@ export default function PetitionerPage() {
       id: 1,
       title: "Expense Sheet",
       href: "https://docs.google.com/spreadsheets/d/1bFkV3uIhbLYh0AYfxZ4ivm6B9o9AtXDqiMPmVb5g6DY/edit?usp=sharing",
-      type: "x", // normal
+      type: "x",
     },
     {
       id: 2,
       title: "Balance Sheet",
       href: "https://docs.google.com/spreadsheets/d/12jr-KDq2fCsH4uk0SctHet205nLxX-h-65wzVwkB2-k/edit?usp=drive_link",
-      type: "x", // yellow
+      type: "x", 
     },
     {
       id: 3,
       title: "Notice [Defaulters]",
       href: "https://drive.google.com/file/d/1wDldvUDtaDjj5-PCThdf7Z49hWVUhEE9/view?usp=drive_link",
-      type: "n", // red
+      type: "n", 
     },
   ];
 
@@ -97,7 +97,7 @@ export default function PetitionerPage() {
                   className="absolute inset-0"
                 >
                   <div className="absolute inset-0 flex items-center justify-center p-2 text-center">
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="font-mono text-lg text-white">
                       {card.title}
                     </h3>
                   </div>
