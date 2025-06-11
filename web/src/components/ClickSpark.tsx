@@ -181,7 +181,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full ${disabled ? 'pointer-events-none' : 'cursor-pointer'} ${className}`}
+      className={`relative w-full h-full ${disabled ? 'pointer-events-none' : ''} ${className}`}
       onClick={fireSpark}
       onTouchStart={fireSpark}
       role="button"

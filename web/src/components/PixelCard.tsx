@@ -186,7 +186,7 @@ export default function PixelCard({
   noFocus,
   className = "",
   children,
-  hoverDelayMs = 0, // Default to no delay if not provided
+  hoverDelayMs = 0,
 }: PixelCardProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -194,10 +194,9 @@ export default function PixelCard({
   const animationRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(
     null
   );
-  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null); // Ref to store the hover timeout ID
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const timePreviousRef = useRef(performance.now());
-  const [reducedMotion, setReducedMotion] = useState(false); // State to handle window.matchMedia
-
+  const [reducedMotion, setReducedMotion] = useState(false); 
   const variantCfg: VariantConfig = VARIANTS[variant] || VARIANTS.default;
   const finalGap = gap ?? variantCfg.gap;
   const finalSpeed = speed ?? variantCfg.speed;
@@ -208,13 +207,13 @@ export default function PixelCard({
     if (!containerRef.current || !canvasRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
-    const width = Math.round(rect.width); // Use Math.round for better pixel alignment
+    const width = Math.round(rect.width);
     const height = Math.round(rect.height);
     const ctx = canvasRef.current.getContext("2d");
 
     canvasRef.current.width = width;
     canvasRef.current.height = height;
-    canvasRef.current.style.width = `${width}px`; // Ensure canvas style matches its drawing buffer
+    canvasRef.current.style.width = `${width}px`; 
     canvasRef.current.style.height = `${height}px`;
 
     const colorsArray = finalColors.split(",");
@@ -227,7 +226,7 @@ export default function PixelCard({
         const dx = x - width / 2;
         const dy = y - height / 2;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const delay = reducedMotion ? 0 : distance; // Use reducedMotion state
+        const delay = reducedMotion ? 0 : distance; 
         if (!ctx) return;
         pxs.push(
           new Pixel(
@@ -339,8 +338,8 @@ export default function PixelCard({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full overflow-hidden grid place-items-center
-                   rounded-[10px] isolate
+      className={`relative w-full h-full overflow-hidden grid place-items-center border border-[#27272a] 
+                   rounded-[10px] isolate 
                   transform transition-all duration-300 ease-out
                   hover:scale-[1.01] hover:shadow-2xl hover:shadow-neutral-900/50
                   select-none ${className}`}
