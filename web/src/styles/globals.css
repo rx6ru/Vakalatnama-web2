@@ -29,3 +29,16 @@ html {
   width: 100dvw;
   background-color: #000000;
 }
+
+::selection {
+  background-color: #ffffffcc; /* Tailwind's yellow-400 */
+  color: #000000; /* Black text */
+}
+
+
+
+  body {
+    background-color: #000000; /* Light gray background */
+    color: #ffffff;              /* Dark gray text */
+    min-width: 10rem;
+  }

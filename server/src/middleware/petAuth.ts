@@ -1,7 +1,6 @@
 //authcheck middleware it is a ts file so add types too
 
 import { Request, Response, NextFunction } from 'express';
-//impportjwt in ts
 import {verify, JwtPayload} from 'jsonwebtoken';
 import config from '../config';
 

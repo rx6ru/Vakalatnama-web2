@@ -1,5 +1,10 @@
 import Waves from "../components/Wave";
 import CountUp from '../components/CountUp'
+import Link from "next/link";
+
+  
+
+
 
 import "./home.css"; 
 export default function Home() {
@@ -7,7 +12,9 @@ export default function Home() {
     <div className="app-container">
       <div className="content">
         <div className="font-major title">VAKALATNAMA</div>
-        <div className="text-3xl font-oswald">PETITIONER</div>
+        <Link href="/petitioner">
+          <span className="text-3xl font-oswald">PETITIONER</span>
+        </Link>
 
       </div>
 
