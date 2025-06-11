@@ -1,52 +1,25 @@
-'use client';
 
 import Link from "next/link"
 import TextPressure from '../../components/TextPressure';
 import Squares from '../../components/Squares';
 import PixelCard from '../../components/PixelCard';
+import cardsData from '../../fdata/cards.json'; 
+
+interface Card {
+  id: number;
+  title: string;
+  href: string;
+  type: string;
+}
 
 export default function PetitionerPage() {
-
-
-  const cards = [
-    {
-      id: 1,
-      title: "4th Phase Coll. [GForm]",
-      href: "https://forms.gle/6f5ZH5JhvAmWHqoW9",
-      type: "y",
-    },
-    {
-      id: 2,
-      title: "Notice [Defaulters]",
-      href: "https://drive.google.com/file/d/1wDldvUDtaDjj5-PCThdf7Z49hWVUhEE9/view?usp=drive_link",
-      type: "n",
-    },
-    {
-      id: 3,
-      title: "Expense Sheet",
-      href: "https://docs.google.com/spreadsheets/d/1bFkV3uIhbLYh0AYfxZ4ivm6B9o9AtXDqiMPmVb5g6DY/edit?usp=sharing",
-      type: "x",
-    },
-    {
-      id: 4,
-      title: "Balance Sheet",
-      href: "https://docs.google.com/spreadsheets/d/12jr-KDq2fCsH4uk0SctHet205nLxX-h-65wzVwkB2-k/edit?usp=drive_link",
-      type: "x",
-    },
-  ];
+  const cards: Card[] = cardsData; // Use the imported JSON data
 
   // Maps card types to PixelCard variants
   const variantMap: Record<string, "default" | "yellow" | "pink"> = {
-    n: "default", // Uses default settings but allows custom colors/speed
-    x: "pink",    // Uses pink variant base, can be overridden by specific props
-    y: "yellow",  // Uses yellow variant base, can be overridden by specific props
-  };
-  
-  // Maps card types to border classes
-  const borderClassMap: Record<string, string> = {
-    n: "border-neutral-500", // Default gray border
-    x: "border-red-500",     // Red border for 'x' type
-    y: "border-yellow-400",  // Yellow border for 'y' type
+    n: "default",
+    x: "pink",
+    y: "yellow",
   };
 
   return (
@@ -57,7 +30,7 @@ export default function PetitionerPage() {
         </span>
       </div>
 
-
+      {/* New wrapper div with flex-grow to push contact info to bottom */}
       <div className="flex flex-col flex-grow">
         <div>
           <div className="h-10 sm:h-12 md:h-16 lg:h-24 xl:h-28">
@@ -70,6 +43,7 @@ export default function PetitionerPage() {
             />
           </div>
 
+          {/* Adjusted container for "Welcome Petitioner" */}
           <div
             className="
               px-4 w-full max-w-screen-xl mx-auto flex items-center justify-center
@@ -104,7 +78,7 @@ export default function PetitionerPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className={`relative h-32 border ${borderClassMap[card.type] || borderClassMap.n} rounded-lg`}>
+                <div className="relative h-32">
                   <PixelCard
                     variant={variantMap[card.type] || variantMap.n}
                     className="absolute inset-0"
