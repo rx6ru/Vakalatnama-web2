@@ -1,9 +1,13 @@
+'use client';
+
 import Link from "next/link"
 import TextPressure from '../../components/TextPressure';
 import Squares from '../../components/Squares';
 import PixelCard from '../../components/PixelCard';
 
-export default async function PetitionerPage() {
+export default function PetitionerPage() {
+
+
   const cards = [
     {
       id: 1,
@@ -31,25 +35,28 @@ export default async function PetitionerPage() {
     },
   ];
 
+  // Maps card types to PixelCard variants
   const variantMap: Record<string, "default" | "yellow" | "pink"> = {
-    n: "default",
-    x: "pink",
-    y: "yellow",
+    n: "default", // Uses default settings but allows custom colors/speed
+    x: "pink",    // Uses pink variant base, can be overridden by specific props
+    y: "yellow",  // Uses yellow variant base, can be overridden by specific props
   };
-
+  
+  // Maps card types to border classes
   const borderClassMap: Record<string, string> = {
-    n: "border-neutral-500",
-    x: "border-red-500",
-    y: "border-yellow-400",
+    n: "border-neutral-500", // Default gray border
+    x: "border-red-500",     // Red border for 'x' type
+    y: "border-yellow-400",  // Yellow border for 'y' type
   };
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Link href="/">
-        <span className="font-major text-[clamp(1.5rem,1.5vw,3rem)] m-[clamp(1.5rem,2.5dvw,1dvw)] inline-flex items-baseline">
-          VAKALATNAMA
+      <div className="m-[clamp(1.5rem,2.5dvw,1dvw)]">
+        <span className="font-major text-[clamp(1.5rem,1.5vw,3rem)] inline-flex items-baseline">
+          <Link href="/" className="text-white no-underline">VAKALATNAMA</Link>
         </span>
-      </Link>
+      </div>
+
 
       <div className="flex flex-col flex-grow">
         <div>

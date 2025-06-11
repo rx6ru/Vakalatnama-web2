@@ -1,15 +1,14 @@
 import Waves from "../components/Wave";
 import CountUp from '../components/CountUp'
-import Link from "next/link";
 import "./home.css"; 
 export default function Home() {
   return (
     <div className="app-container">
       <div className="content">
         <div className="font-major title">VAKALATNAMA</div>
-        <Link href="/petitioner">
+        <a href="/petitioner">
           <span className="text-3xl font-oswald">PETITIONER</span>
-        </Link>
+        </a>
 
       </div>
 
