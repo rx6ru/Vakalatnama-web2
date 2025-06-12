@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { useSafeAnimationFrame, useSafeEventListener } from "@/lib/utils";
 import './Wave.css';
 
 
