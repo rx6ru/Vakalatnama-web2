@@ -1,25 +1,56 @@
 import Waves from "../components/Wave";
 import CountUp from '../components/CountUp'
+import { Button } from "@/components/ui/button"
+
 import "./home.css"; 
-export default function Home() {
+
+export default async function Home() {
+
   return (
     <div className="app-container">
       <div className="content">
         <div className="font-major title">VAKALATNAMA</div>
-        <a href="/petitioner">
-          <span className="text-3xl font-oswald">PETITIONER</span>
-        </a>
+        
+        {/* Using a spacer div with fixed height */}
+        <div className="h-8 sm:h-2"></div>
+        
+        <div className="flex flex-col items-center justify-center gap-6 font-oswald sm:flex-row sm:gap-6">
+
+          <a href="/petitioner">
+            <Button 
+              variant="normal" 
+              b="white" 
+              t="black"
+              className="text-xl sm:text-2xl w-[80vw] sm:w-[15dvw] h-[6dvh] sm:h-[5dvh] min-w-[140px] max-w-[320px] sm:max-w-none"
+            >
+              PETITIONER
+            </Button>
+          </a>
+
+          <a href="/core">
+            <Button
+              variant="outline"
+              b="white"
+              t="white"
+              ht="black"
+              className="text-xl sm:text-2xl w-[80vw] sm:w-[15dvw] h-[6dvh] sm:h-[5dvh] min-w-[140px] max-w-[320px] sm:max-w-none"
+            >
+              Core0
+            </Button>
+          </a>
+
+        </div>
 
       </div>
 
-      <div className=" text-zinc-500 pcount-container">
+      <div className="text-zinc-500 pcount-container">
         <CountUp
-        from={0}
-        to={432}
-        separator=","
-        direction="up"
-        duration={2}
-        className="count-up-text font-oswald"
+          from={0}
+          to={432}
+          separator=","
+          direction="up"
+          duration={2}
+          className="count-up-text font-oswald"
         />
         <span className="text-[4dvw] font-[400] font-space">
           PETITIONERS

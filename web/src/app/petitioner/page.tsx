@@ -12,10 +12,11 @@ interface Card {
   type: string;
 }
 
-export default function PetitionerPage() {
-  const cards: Card[] = cardsData; // Use the imported JSON data
-
+export default async function PetitionerPage() {
+  const cards: Card[] = cardsData; 
   // Maps card types to PixelCard variants
+
+  
   const variantMap: Record<string, "default" | "yellow" | "pink"> = {
     n: "default",
     x: "pink",

@@ -1,6 +1,15 @@
 
 import "../styles/globals.css";
 import ClickSpark from '../components/ClickSpark';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Vakalatnama',
+  description: 'Convenience Portal',
+  icons: {
+  icon: '/favicon.svg', 
+  },
+};
 
 
   export default function RootLayout({
