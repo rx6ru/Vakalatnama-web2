@@ -2,6 +2,7 @@
 import "../styles/globals.css";
 import ClickSpark from '../components/ClickSpark';
 import type { Metadata } from 'next';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: 'Vakalatnama',
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
               duration={300}
             >
               {children}
+              <Analytics />
             </ClickSpark>
         </body>
       </html>
