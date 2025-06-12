@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import { useSafeAnimationFrame, useSafeEventListener } from "@/lib/utils";
 import './Wave.css';
 
 
@@ -102,12 +103,13 @@ const Waves = ({
     lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY,
     friction, tension, maxCursorMove, xGap, yGap
   });
-  const frameIdRef = useRef(null);
 
+  // Update config when props change
   useEffect(() => {
     configRef.current = { lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap };
   }, [lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap]);
 
+  // Set up canvas and initialize
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -142,138 +144,157 @@ const Waves = ({
       }
     }
 
-    function movePoints(time) {
-      const lines = linesRef.current, mouse = mouseRef.current, noise = noiseRef.current;
-      const { waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove } = configRef.current;
-      lines.forEach((pts) => {
-        pts.forEach((p) => {
-          const move = noise.perlin2(
-            (p.x + time * waveSpeedX) * 0.002,
-            (p.y + time * waveSpeedY) * 0.0015
-          ) * 12;
-          p.wave.x = Math.cos(move) * waveAmpX;
-          p.wave.y = Math.sin(move) * waveAmpY;
-
-          const dx = p.x - mouse.sx, dy = p.y - mouse.sy;
-          const dist = Math.hypot(dx, dy), l = Math.max(175, mouse.vs);
-          if (dist < l) {
-            const s = 1 - dist / l;
-            const f = Math.cos(dist * 0.001) * s;
-            p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00065;
-            p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065;
-          }
-
-          p.cursor.vx += (0 - p.cursor.x) * tension;
-          p.cursor.vy += (0 - p.cursor.y) * tension;
-          p.cursor.vx *= friction;
-          p.cursor.vy *= friction;
-          p.cursor.x += p.cursor.vx * 2;
-          p.cursor.y += p.cursor.vy * 2;
-          p.cursor.x = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.x));
-          p.cursor.y = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.y));
-        });
-      });
-    }
-
-    function moved(point, withCursor = true) {
-      const x = point.x + point.wave.x + (withCursor ? point.cursor.x : 0);
-      const y = point.y + point.wave.y + (withCursor ? point.cursor.y : 0);
-      return { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 };
-    }
-
-    // Modified drawLines using quadratic curves for smoother arcs
-    function drawLines() {
-      const { width, height } = boundingRef.current;
-      const ctx = ctxRef.current;
-      ctx.clearRect(0, 0, width, height);
-      
-      // Smoothing properties
-      ctx.lineJoin = "round";
-      ctx.lineCap = "round";
-      
-      // Set the line width to make the waves thinner
-      ctx.lineWidth = 0.5; // Change this value to adjust wave thickness (smaller value = thinner waves)
-      
-      ctx.beginPath();
-      ctx.strokeStyle = configRef.current.lineColor;
-      
-      linesRef.current.forEach((points) => {
-        if (points.length < 2) return;
-        let p0 = moved(points[0], false);
-        ctx.moveTo(p0.x, p0.y);
-        for (let i = 0; i < points.length - 1; i++) {
-          const current = moved(points[i], true);
-          const next = moved(points[i + 1], true);
-          const midX = (current.x + next.x) / 2;
-          const midY = (current.y + next.y) / 2;
-          ctx.quadraticCurveTo(current.x, current.y, midX, midY);
-        }
-        // Draw to the final point
-        const last = moved(points[points.length - 1], true);
-        ctx.lineTo(last.x, last.y);
-      });
-      
-      ctx.stroke();
-    }
-
-    function tick(t) {
-      const mouse = mouseRef.current;
-      mouse.sx += (mouse.x - mouse.sx) * 0.1;
-      mouse.sy += (mouse.y - mouse.sy) * 0.1;
-      const dx = mouse.x - mouse.lx, dy = mouse.y - mouse.ly;
-      const d = Math.hypot(dx, dy);
-      mouse.v = d;
-      mouse.vs += (d - mouse.vs) * 0.1;
-      mouse.vs = Math.min(100, mouse.vs);
-      mouse.lx = mouse.x; 
-      mouse.ly = mouse.y;
-      mouse.a = Math.atan2(dy, dx);
-      container.style.setProperty("--x", `${mouse.sx}px`);
-      container.style.setProperty("--y", `${mouse.sy}px`);
-
-      movePoints(t);
-      drawLines();
-      frameIdRef.current = requestAnimationFrame(tick);
-    }
-
-    function onResize() {
-      setSize();
-      setLines();
-    }
-    function onMouseMove(e) { 
-      updateMouse(e.pageX, e.pageY); 
-    }
-    function onTouchMove(e) {
-      const touch = e.touches[0];
-      updateMouse(touch.clientX, touch.clientY);
-    }
-    function updateMouse(x, y) {
-      const mouse = mouseRef.current, b = boundingRef.current;
-      mouse.x = x - b.left;
-      mouse.y = y - b.top + window.scrollY;
-      if (!mouse.set) {
-        mouse.sx = mouse.x; 
-        mouse.sy = mouse.y;
-        mouse.lx = mouse.x; 
-        mouse.ly = mouse.y;
-        mouse.set = true;
-      }
-    }
-
     setSize();
     setLines();
-    frameIdRef.current = requestAnimationFrame(tick);
-    window.addEventListener("resize", onResize);
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
+
+    // Use ResizeObserver instead of window resize event when possible
+    const resizeObserver = new ResizeObserver(() => {
+      setSize();
+      setLines();
+    });
+
+    if (container) {
+      resizeObserver.observe(container);
+    }
+
+    // Fallback for browsers that don't support ResizeObserver
+    window.addEventListener("resize", () => {
+      setSize();
+      setLines();
+    });
 
     return () => {
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("touchmove", onTouchMove);
-      cancelAnimationFrame(frameIdRef.current);
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", () => {
+        setSize();
+        setLines();
+      });
     };
   }, []);
+
+  // Mouse/touch event handlers
+  function updateMouse(x, y) {
+    const mouse = mouseRef.current, b = boundingRef.current;
+    mouse.x = x - b.left;
+    mouse.y = y - b.top + window.scrollY;
+    if (!mouse.set) {
+      mouse.sx = mouse.x; 
+      mouse.sy = mouse.y;
+      mouse.lx = mouse.x; 
+      mouse.ly = mouse.y;
+      mouse.set = true;
+    }
+  }
+
+  // Use safe event listeners for mouse and touch events
+  useSafeEventListener("mousemove", (e) => {
+    updateMouse(e.pageX, e.pageY);
+  });
+
+  useSafeEventListener("touchmove", (e) => {
+    const touch = e.touches[0];
+    updateMouse(touch.clientX, touch.clientY);
+  }, window, { passive: true });
+
+  // Animation functions
+  function movePoints(time) {
+    const lines = linesRef.current, mouse = mouseRef.current, noise = noiseRef.current;
+    const { waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove } = configRef.current;
+    lines.forEach((pts) => {
+      pts.forEach((p) => {
+        const move = noise.perlin2(
+          (p.x + time * waveSpeedX) * 0.002,
+          (p.y + time * waveSpeedY) * 0.0015
+        ) * 12;
+        p.wave.x = Math.cos(move) * waveAmpX;
+        p.wave.y = Math.sin(move) * waveAmpY;
+
+        const dx = p.x - mouse.sx, dy = p.y - mouse.sy;
+        const dist = Math.hypot(dx, dy), l = Math.max(175, mouse.vs);
+        if (dist < l) {
+          const s = 1 - dist / l;
+          const f = Math.cos(dist * 0.001) * s;
+          p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.00065;
+          p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065;
+        }
+
+        p.cursor.vx += (0 - p.cursor.x) * tension;
+        p.cursor.vy += (0 - p.cursor.y) * tension;
+        p.cursor.vx *= friction;
+        p.cursor.vy *= friction;
+        p.cursor.x += p.cursor.vx * 2;
+        p.cursor.y += p.cursor.vy * 2;
+        p.cursor.x = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.x));
+        p.cursor.y = Math.min(maxCursorMove, Math.max(-maxCursorMove, p.cursor.y));
+      });
+    });
+  }
+
+  function moved(point, withCursor = true) {
+    const x = point.x + point.wave.x + (withCursor ? point.cursor.x : 0);
+    const y = point.y + point.wave.y + (withCursor ? point.cursor.y : 0);
+    return { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 };
+  }
+
+  // Modified drawLines using quadratic curves for smoother arcs
+  function drawLines() {
+    const { width, height } = boundingRef.current;
+    const ctx = ctxRef.current;
+    if (!ctx) return;
+    
+    ctx.clearRect(0, 0, width, height);
+    
+    // Smoothing properties
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    
+    // Set the line width to make the waves thinner
+    ctx.lineWidth = 0.5; // Change this value to adjust wave thickness (smaller value = thinner waves)
+    
+    ctx.beginPath();
+    ctx.strokeStyle = configRef.current.lineColor;
+    
+    linesRef.current.forEach((points) => {
+      if (points.length < 2) return;
+      let p0 = moved(points[0], false);
+      ctx.moveTo(p0.x, p0.y);
+      for (let i = 0; i < points.length - 1; i++) {
+        const current = moved(points[i], true);
+        const next = moved(points[i + 1], true);
+        const midX = (current.x + next.x) / 2;
+        const midY = (current.y + next.y) / 2;
+        ctx.quadraticCurveTo(current.x, current.y, midX, midY);
+      }
+      // Draw to the final point
+      const last = moved(points[points.length - 1], true);
+      ctx.lineTo(last.x, last.y);
+    });
+    
+    ctx.stroke();
+  }
+
+  // Use our custom hook for the animation frame
+  useSafeAnimationFrame((t) => {
+    const mouse = mouseRef.current;
+    mouse.sx += (mouse.x - mouse.sx) * 0.1;
+    mouse.sy += (mouse.y - mouse.sy) * 0.1;
+    const dx = mouse.x - mouse.lx, dy = mouse.y - mouse.ly;
+    const d = Math.hypot(dx, dy);
+    mouse.v = d;
+    mouse.vs += (d - mouse.vs) * 0.1;
+    mouse.vs = Math.min(100, mouse.vs);
+    mouse.lx = mouse.x; 
+    mouse.ly = mouse.y;
+    mouse.a = Math.atan2(dy, dx);
+    
+    if (containerRef.current) {
+      containerRef.current.style.setProperty("--x", `${mouse.sx}px`);
+      containerRef.current.style.setProperty("--y", `${mouse.sy}px`);
+    }
+
+    movePoints(t);
+    drawLines();
+  });
 
   return (
     <div

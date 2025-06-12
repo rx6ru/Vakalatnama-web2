@@ -5,6 +5,8 @@ import Squares from '../../components/Squares';
 import PixelCard from '../../components/PixelCard';
 import cardsData from '../../fdata/cards.json'; 
 
+
+
 interface Card {
   id: number;
   title: string;
@@ -14,8 +16,6 @@ interface Card {
 
 export default async function PetitionerPage() {
   const cards: Card[] = cardsData; 
-  // Maps card types to PixelCard variants
-
   
   const variantMap: Record<string, "default" | "yellow" | "pink"> = {
     n: "default",

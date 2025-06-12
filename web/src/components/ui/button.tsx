@@ -91,7 +91,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     return (
-      <button
+      <button 
         className={cn(
           buttonVariants({ variant, size, className }),
           // Click effect animation for all buttons
@@ -111,25 +111,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
-
-// Example usage:
-/*
-// Outline button: border is white, text is white, on hover bg becomes white and text becomes black
-<Button
-  variant="outline"
-  b="white"
-  t="white"
-  ht="black"
->
-  Outline Button
-</Button>
-
-// Normal button: background is white, text is black, no hover effects
-<Button 
-  variant="normal" 
-  b="white" 
-  t="black"
->
-  Normal Button
-</Button>
-*/
