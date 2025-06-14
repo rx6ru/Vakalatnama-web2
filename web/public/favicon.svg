@@ -1,9 +1,8 @@
 <svg width="600" height="600" xmlns="http://www.w3.org/2000/svg">
-
  <g>
   <title>Layer 1</title>
-  <rect id="svg_1" height="626.00001" width="644.00001" y="-22.3632" x="-42.35998" opacity="NaN" stroke="#000" fill="#fff"/>
-  <rect stroke="#000" id="svg_3" height="603.99999" width="609.00005" y="-1.3632" x="-1.35998" fill="#000000"/>
-  <path transform="rotate(180 300 306)" stroke="#ffffff" stroke-width="30" id="svg_4" d="m162,423.15407l138,-234.30815l138,234.30815l-276.00001,0z" fill="#000"/>
+  <ellipse stroke-width="0" ry="300.00001" rx="300.00001" id="svg_3" cy="300" cx="300.00002" stroke="#000" fill="#000000"/>
+  <path transform="rotate(180 300 329)" fill="#000" d="m162,446.15407l138,-234.30815l138,234.30815l-276.00001,0l0.00001,0z" id="svg_4" stroke-width="30" stroke="#ffffff"/>
  </g>
+
 </svg>
