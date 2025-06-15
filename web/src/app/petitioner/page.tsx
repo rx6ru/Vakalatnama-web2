@@ -1,9 +1,11 @@
 
 import Link from "next/link"
-import TextPressure from '../../components/TextPressure';
-import Squares from '../../components/Squares';
-import PixelCard from '../../components/PixelCard';
-import cardsData from '../../fdata/cards.json'; 
+import TextPressure from '@/components/TextPressure';
+import Squares from '@/components/Squares';
+import PixelCard from '@/components/PixelCard';
+import cardsData from '@/fdata/cards.json'; 
+import Socials from "@/components/ui/socials"
+
 
 interface Card {
   id: number;
@@ -14,8 +16,6 @@ interface Card {
 
 export default async function PetitionerPage() {
   const cards: Card[] = cardsData; 
-  // Maps card types to PixelCard variants
-
   
   const variantMap: Record<string, "default" | "yellow" | "pink"> = {
     n: "default",
@@ -25,6 +25,9 @@ export default async function PetitionerPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <div className="fixed z-10 top-6 right-6">
+        <Socials />
+      </div>
       <div className="m-[clamp(1.5rem,2.5dvw,1dvw)]">
         <span className="font-major text-[clamp(1.5rem,1.5vw,3rem)] inline-flex items-baseline">
           <Link href="/" className="text-white no-underline">VAKALATNAMA</Link>
@@ -95,7 +98,7 @@ export default async function PetitionerPage() {
         </div>
       </div>
 
-      <div className="flex justify-end items-baseline px-4 pb-4 text-[clamp(1rem,1vw,1.5rem)] text-neutral-400">
+      <div className="flex justify-end items-baseline px-4 pb-4 text-[clamp(0.85rem,1vw,2rem)] text-neutral-400">
         <span className="mr-1 font-semibold">Contact</span>
         <a
           href="mailto:core0legalteam@gmail.com"

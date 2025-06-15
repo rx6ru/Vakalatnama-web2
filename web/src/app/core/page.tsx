@@ -1,23 +1,18 @@
-// You can place this file at a path like: app/coming-soon/page.tsx
 
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
-// It's a good practice to set metadata for SEO and browser tabs
 export const metadata: Metadata = {
   title: 'Under Development',
   description: 'This page is currently under construction.',
 };
 
-/**
- * A minimalist black & white "Under Development" page component.
- * It informs users that the page is being worked on.
- */
+
 export default function UnderDevelopmentPage() {
   return (
     <div className="flex flex-col items-center justify-center w-full min-h-screen p-4 text-white bg-black">
       <div className="max-w-md text-center">
-        {/* Minimalist Construction Icon */}
+
         <svg
           className="w-20 h-20 mx-auto text-white animate-pulse"
           xmlns="http://www.w3.org/2000/svg"
@@ -34,17 +29,17 @@ export default function UnderDevelopmentPage() {
           />
         </svg>
 
-        {/* Main Heading - Oswald Font */}
+
         <h1 className="mt-12 text-5xl font-bold tracking-wider text-white uppercase font-oswald sm:text-6xl">
           Under Development
         </h1>
 
-        {/* Status Text - Mono Font */}
+
         <p className="mt-8 font-mono text-sm tracking-widest text-gray-400 uppercase">
           [ Work in Progress ]
         </p>
 
-        {/* Call-to-action Link */}
+
         <div className="mt-16">
           <Link
             href="/"

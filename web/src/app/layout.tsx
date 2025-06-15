@@ -21,16 +21,16 @@ export const metadata: Metadata = {
     return (
       <html lang="en">
         <body>
-            <ClickSpark
-              sparkColor='#fff'
-              sparkSize={15}
-              sparkRadius={30}
-              sparkCount={4}
-              duration={300}
-            >
-              {children}
-              <Analytics />
-            </ClickSpark>
+                <ClickSpark
+                  sparkColor='#fff'
+                  sparkSize={15}
+                  sparkRadius={30}
+                  sparkCount={4}
+                  duration={300}
+                >
+                  {children}
+                  <Analytics />
+                </ClickSpark>
         </body>
       </html>
     );
