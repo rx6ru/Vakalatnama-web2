@@ -8,7 +8,7 @@ export default function Socials() {
           href="https://youtube.com/@vakalatnama_official" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 transition-all duration-300 border rounded-full border-white/20 hover:border-white/100 group"
+          className="flex items-center justify-center w-10 h-10 transition-all duration-300 border-2 rounded-full border-white/20 hover:border-white/100 group"
         >
           <Image 
             src="/icons/youtube.svg" 
@@ -23,7 +23,7 @@ export default function Socials() {
           href="https://instagram.com/core0.legal" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 transition-all duration-300 border rounded-full border-white/20 hover:border-white/100 group"
+          className="flex items-center justify-center w-10 h-10 transition-all duration-300 border-2 rounded-full border-white/20 hover:border-white/100 group"
         >
           <Image 
             src="/icons/instagram.svg" 

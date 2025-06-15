@@ -1,9 +1,9 @@
 
 import Link from "next/link"
-import TextPressure from '../../components/TextPressure';
-import Squares from '../../components/Squares';
-import PixelCard from '../../components/PixelCard';
-import cardsData from '../../fdata/cards.json'; 
+import TextPressure from '@/components/TextPressure';
+import Squares from '@/components/Squares';
+import PixelCard from '@/components/PixelCard';
+import cardsData from '@/fdata/cards.json'; 
 import Socials from "@/components/ui/socials"
 
 
